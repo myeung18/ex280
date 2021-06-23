@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: test1
-    image: cirros
+    image: docker.io/library/cirros:latest
     command: ["/bin/sh", "-c", "env"] 
     envFrom:
       - configMapRef:
