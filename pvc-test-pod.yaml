@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata: 
-  name: morevol2
+  name: pvc-test-pod
 spec:
   containers:
   - name: centos
@@ -10,16 +10,17 @@ spec:
       - sleep
       - "3600" 
     volumeMounts:
-      - mountPath: /centos
-        name: test
+      - mountPath: /nexus-data
+        name: nexus
   - name: centos2
     image: centos:7
     command:
       - sleep
       - "3600"
     volumeMounts:
-      - mountPath: /centos2
-        name: test
+      - mountPath: /nexus-data-2
+        name: nexus
   volumes: 
-    - name: test
-      emptyDir: {}
+    - name: nexus
+      persistentVolumeClaim:
+        claimName: nexus
